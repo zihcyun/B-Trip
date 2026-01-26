@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>B Trip Wireframe</title>
+    <style>
+      :root {
+        --ink: #141414;
+        --muted: #6f6f6f;
+        --line: #d7d7d7;
+        --soft: #f5f5f5;
+        --bg: #f2f2f0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: radial-gradient(circle at 20% 10%, #ffffff 0%, #f1f1ef 40%, #e8e8e6 100%);
+      }
+
+      .page {
+        padding: 24px;
+      }
+
+      .title {
+        margin: 0 0 16px;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+
+      .board {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+      }
+
+      .phone {
+        background: #ffffff;
+        border: 2px solid var(--ink);
+        border-radius: 28px;
+        padding: 16px 14px 18px;
+        min-height: 560px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        position: relative;
+        box-shadow: 0 16px 28px rgba(0, 0, 0, 0.08);
+      }
+
+      .phone .topbar {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .icon-circle {
+        width: 32px;
+        height: 32px;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+      }
+
+      .search {
+        border: 2px solid var(--ink);
+        border-radius: 18px;
+        padding: 8px 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .map {
+        margin-top: 12px;
+        border: 2px solid var(--ink);
+        border-radius: 18px;
+        background: repeating-linear-gradient(
+          45deg,
+          #c9c9c9,
+          #c9c9c9 12px,
+          #bdbdbd 12px,
+          #bdbdbd 24px
+        );
+        min-height: 240px;
+        position: relative;
+      }
+
+      .chip-row {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      .chip {
+        border: 2px solid var(--ink);
+        border-radius: 16px;
+        padding: 4px 10px;
+        font-size: 11px;
+      }
+
+      .panel {
+        margin-top: 12px;
+        border: 2px solid var(--ink);
+        border-radius: 18px;
+        padding: 12px;
+        background: #fff;
+      }
+
+      .panel h3 {
+        margin: 0 0 8px;
+        font-size: 14px;
+      }
+
+      .panel .meta {
+        font-size: 11px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .pill-row {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+
+      .pill {
+        border: 2px solid var(--ink);
+        border-radius: 16px;
+        padding: 4px 10px;
+        font-size: 11px;
+      }
+
+      .list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .list-item {
+        border: 2px solid var(--ink);
+        border-radius: 12px;
+        padding: 8px;
+        display: grid;
+        grid-template-columns: 40px 1fr 24px;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .thumb {
+        border: 2px solid var(--ink);
+        border-radius: 8px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        font-size: 10px;
+        background: var(--soft);
+      }
+
+      .trash {
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--ink);
+        border-radius: 6px;
+      }
+
+      .bottom-nav {
+        margin-top: 10px;
+        border-top: 2px solid var(--ink);
+        padding-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        text-align: center;
+        font-size: 11px;
+        gap: 4px;
+      }
+
+      .bottom-nav span {
+        display: grid;
+        gap: 4px;
+        place-items: center;
+      }
+
+      .bottom-nav .active .nav-dot {
+        background: var(--ink);
+      }
+
+      .nav-dot {
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--ink);
+        border-radius: 6px;
+      }
+
+      .section-title {
+        font-weight: 700;
+        font-size: 14px;
+        margin: 6px 0 10px;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .card {
+        border: 2px solid var(--ink);
+        border-radius: 12px;
+        padding: 10px;
+        font-size: 10px;
+        min-height: 64px;
+        background: #fff;
+      }
+
+      .tag {
+        display: inline-block;
+        margin-top: 6px;
+        border: 2px solid var(--ink);
+        border-radius: 12px;
+        padding: 2px 8px;
+        font-size: 10px;
+      }
+
+      .profile {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .stat-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .stat {
+        border: 2px solid var(--ink);
+        border-radius: 14px;
+        padding: 10px;
+        min-height: 70px;
+      }
+
+      .stat .label {
+        font-size: 11px;
+      }
+
+      .stat .value {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .btn {
+        border: 2px solid var(--ink);
+        border-radius: 16px;
+        padding: 6px 12px;
+        font-size: 11px;
+        background: #fff;
+        display: inline-block;
+        width: fit-content;
+      }
+
+      .badge {
+        position: absolute;
+        right: 10px;
+        top: 160px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .floating {
+        width: 32px;
+        height: 32px;
+        border: 2px solid var(--ink);
+        border-radius: 50%;
+        background: #fff;
+      }
+
+      .footer-note {
+        margin-top: 18px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1 class="title">B Trip Wireframe Prototype</h1>
+      <div class="board">
+        <section class="phone" aria-label="Map view">
+          <div>
+            <div class="topbar">
+              <div class="icon-circle">B</div>
+              <div class="search">Search</div>
+            </div>
+            <div class="chip-row">
+              <span class="chip">奇廟</span>
+              <span class="chip">怪小吃</span>
+              <span class="chip">怪咖</span>
+              <span class="chip">酷B</span>
+            </div>
+            <div class="map"></div>
+            <div class="badge">
+              <div class="floating"></div>
+              <div class="floating"></div>
+            </div>
+            <div class="panel">
+              <h3>永和路中獸</h3>
+              <div class="pill-row">
+                <span class="pill">加入行程</span>
+                <span class="pill">儲存地點</span>
+                <span class="pill">關閉</span>
+              </div>
+              <div class="meta">新北市永和區保生路23巷25號・距離你15公里</div>
+              <div class="section-title">今日行程</div>
+              <div class="list">
+                <div class="list-item">
+                  <div class="thumb">IMG</div>
+                  <div>田中怪廟<br /><span class="meta">彰化縣大村鄉38巷7號</span></div>
+                  <div class="trash"></div>
+                </div>
+                <div class="list-item">
+                  <div class="thumb">IMG</div>
+                  <div>貓肉冰<br /><span class="meta">彰化縣中山路78巷1號</span></div>
+                  <div class="trash"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <nav class="bottom-nav">
+            <span><div class="nav-dot"></div>Post</span>
+            <span class="active"><div class="nav-dot"></div>Map</span>
+            <span><div class="nav-dot"></div>Trip</span>
+            <span><div class="nav-dot"></div>Me</span>
+          </nav>
+        </section>
+
+        <section class="phone" aria-label="Post view">
+          <div>
+            <div class="topbar">
+              <div class="icon-circle">B</div>
+              <div class="search">Search</div>
+            </div>
+            <div class="section-title">B Trip 推薦行程</div>
+            <div class="section-title">最新B級</div>
+            <div class="grid-3">
+              <div class="card">IMG<div class="tag">基隆鬼咖啡</div></div>
+              <div class="card">IMG<div class="tag">花蓮讚魚糕子</div></div>
+              <div class="card">IMG<div class="tag">台南邪風魚骨</div></div>
+            </div>
+            <div class="section-title">怪達人Po文</div>
+            <div class="grid-3">
+              <div class="card">IMG<div class="tag">苗栗朝明</div></div>
+              <div class="card">IMG<div class="tag">胎哥</div></div>
+              <div class="card">IMG<div class="tag">邪回魂</div></div>
+            </div>
+            <div class="section-title">My Post</div>
+            <div class="panel" style="border-style: dashed;">
+              <div class="meta" style="text-align: center;">來吧!分享你的B Trip</div>
+              <div class="btn" style="margin: 6px auto 0;">開始創作</div>
+            </div>
+          </div>
+          <nav class="bottom-nav">
+            <span class="active"><div class="nav-dot"></div>Post</span>
+            <span><div class="nav-dot"></div>Map</span>
+            <span><div class="nav-dot"></div>Trip</span>
+            <span><div class="nav-dot"></div>Me</span>
+          </nav>
+        </section>
+
+        <section class="phone" aria-label="Trip view">
+          <div>
+            <div class="topbar">
+              <div class="icon-circle">B</div>
+              <div class="search">Search</div>
+            </div>
+            <div class="section-title">今日行程</div>
+            <div class="pill-row">
+              <span class="pill">永和B級景點A</span>
+              <span class="pill">▼</span>
+            </div>
+            <div class="list">
+              <div class="list-item">
+                <div class="thumb">•</div>
+                <div>景安路中廟<br /><span class="meta">永和路中獸</span></div>
+                <div class="trash"></div>
+              </div>
+              <div class="list-item">
+                <div class="thumb">•</div>
+                <div>永和路中獸</div>
+                <div class="trash"></div>
+              </div>
+            </div>
+            <div class="btn" style="margin-top: 10px;">編輯行程</div>
+            <div class="section-title">所有行程</div>
+            <div class="list">
+              <div class="list-item" style="opacity: 0.45;">
+                <div class="thumb">IMG</div>
+                <div>永和B級景點A 使用中</div>
+                <div class="trash"></div>
+              </div>
+              <div class="list-item">
+                <div class="thumb">IMG</div>
+                <div>苗栗朝明的怪旅</div>
+                <div class="trash"></div>
+              </div>
+            </div>
+          </div>
+          <nav class="bottom-nav">
+            <span><div class="nav-dot"></div>Post</span>
+            <span><div class="nav-dot"></div>Map</span>
+            <span class="active"><div class="nav-dot"></div>Trip</span>
+            <span><div class="nav-dot"></div>Me</span>
+          </nav>
+        </section>
+
+        <section class="phone" aria-label="Me view">
+          <div>
+            <div class="topbar">
+              <div class="icon-circle">B</div>
+              <div class="search">Search</div>
+            </div>
+            <div class="profile">
+              <div class="section-title">Jimmy Chen</div>
+              <div class="stat-row">
+                <div class="stat">
+                  <div class="label">B coin</div>
+                  <div class="value">0</div>
+                </div>
+                <div class="stat">
+                  <div class="label">My post</div>
+                  <div class="value">0</div>
+                </div>
+              </div>
+              <div class="btn">登出</div>
+            </div>
+          </div>
+          <nav class="bottom-nav">
+            <span><div class="nav-dot"></div>Post</span>
+            <span><div class="nav-dot"></div>Map</span>
+            <span><div class="nav-dot"></div>Trip</span>
+            <span class="active"><div class="nav-dot"></div>Me</span>
+          </nav>
+        </section>
+      </div>
+      <div class="footer-note">Prototype layout inspired by provided wireframes; adjust labels or spacing as needed.</div>
+    </div>
+  </body>
+</html>

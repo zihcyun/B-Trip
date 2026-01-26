@@ -1,0 +1,8 @@
+
+{
+  "name": "B-Trip: Quirky Explorer",
+  "description": "A travel discovery app for finding unique, 'B-grade', and weirdly charming locations and itineraries.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
